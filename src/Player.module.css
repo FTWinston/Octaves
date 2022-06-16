@@ -1,0 +1,12 @@
+.root {
+    display: flex;
+    flex-direction: column-reverse;
+    user-select: none;
+
+    /* assuming 3 rows of 7 buttons, each 4em by 3em */
+    font-size: min(100vw / 21, 100vh / 13);
+}
+
+.noteButtonRow:not(:first-child) {
+    margin-bottom: 0.5em;
+}

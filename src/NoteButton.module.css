@@ -1,0 +1,44 @@
+.button {
+    font-size: 1em;
+    width: 3em;
+    height: 4em;
+    background-color: #ccc;
+    color: black;
+    border: solid #999 1px;
+    border-radius: 0.25em;
+    z-index: 0;
+}
+
+.button:focus {
+    z-index: 1;
+    outline: none;
+}
+
+.button:active {
+    background-color: #eee;
+}
+
+.button:not(:first-child) {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.button:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.noteName {
+    font-weight: bold;
+    position: relative;
+}
+
+.octaveNumber {
+    color: #666;
+    font-size: 0.6em;
+    font-weight: normal;
+    position: absolute;
+    right: -.6em;
+    bottom: -0.3em;
+}

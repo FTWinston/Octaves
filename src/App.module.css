@@ -1,0 +1,12 @@
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.startButton {
+    font-size: 5em;
+    padding: 0.25em;
+    border-radius: 0.25em;
+}
