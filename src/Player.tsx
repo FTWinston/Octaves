@@ -5,15 +5,25 @@ import { IVoice } from './functionality/Voices';
 import { NoteButton } from './NoteButton';
 import classes from './Player.module.css';
 
-interface Props {
-    keyName: string;
+interface KeySignature {
+    name: string;
     notes: INote[][];
+}
+
+interface Props {
+    keySignatures: KeySignature[];
     voice: IVoice;
 }
 
 export const Player: React.FC<Props> = (props) => {
     const [audio] = useState(() => new Audio());
+    const [keyNumber, setKeyNumber] = useState(() => props.keySignatures.findIndex(sig => sig.notes[0][0].name === 'C'));
     const { voice } = props;
+
+    const { 
+        name: keySignature,
+        notes,
+    } = props.keySignatures[keyNumber];
 
     useEffect(() => {
         audio.setVoice(voice);
@@ -22,9 +32,9 @@ export const Player: React.FC<Props> = (props) => {
         return () => audio.stopAll();
     }, [audio, voice]);
 
-    const buttonRows = props.notes.map((octave, rowNum) => <div className={classes.noteButtonRow} key={rowNum}>{
+    const buttonRows = notes.map((octave, rowNum) => <div className={classes.noteButtonRow} key={rowNum}>{
         octave.map((note, noteNum) => {
-            const index = props.notes[0].length * rowNum + noteNum;
+            const index = notes[0].length * rowNum + noteNum;
 
             return (
                 <NoteButton
@@ -40,7 +50,17 @@ export const Player: React.FC<Props> = (props) => {
 
     return (
         <div className={classes.root}>
-            {buttonRows}
+            <div className={classes.controls}>
+                <button className={classes.controlButton} onClick={() => setKeyNumber(current => current === 0 ? props.keySignatures.length - 1 : current - 1)}>
+                    &lt;
+                </button>
+                <button className={classes.controlButton} onClick={() => setKeyNumber(current => current === props.keySignatures.length - 1 ? 0 : current + 1)}>
+                    &gt;
+                </button>
+            </div>
+            <div className={classes.noteButtons}>
+                {buttonRows}
+            </div>
         </div>
     )
 }

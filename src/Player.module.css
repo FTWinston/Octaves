@@ -1,12 +1,32 @@
 .root {
-    display: flex;
-    flex-direction: column-reverse;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 90vw;
+    gap: 0.5em;
     user-select: none;
 
     /* assuming 3 rows of 7 buttons, each 4em by 3em */
-    font-size: min(100vw / 21, 100vh / 13);
+    font-size: min(90vw / 21, 100vh / 13);
 }
 
-.noteButtonRow:not(:first-child) {
-    margin-bottom: 0.5em;
+.noteButtons {
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column-reverse;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.controlButton {
+    font-size: 1em;
+    min-width: 1.5em;
+    height: 2em;
+    background-color: #333;
+    color: #ccc;
 }
